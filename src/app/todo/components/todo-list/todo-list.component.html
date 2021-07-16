@@ -1,0 +1,27 @@
+<div class="todo-list">
+  <mat-card
+    class="todo-item"
+    *ngFor="let todo of todos$ | async"
+  >
+    <mat-card-header class="todo-item__header">
+      <mat-card-title class="todo-item__title">
+        {{ todo.title }}
+        <span>{{ getStateName(todo.state) }}</span>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="todo-item__content">
+      <p>
+        {{ todo.body }}
+      </p>
+      <mat-card-subtitle class="todo-item__name">
+        <span [ngClass]="getColorName(todo.category.color)">
+          {{ todo.category.name }}
+        </span>
+      </mat-card-subtitle>
+    </mat-card-content>
+    <mat-card-actions class="todo-item__footer">
+      <button mat-raised-button color="primary">編集</button>
+      <button mat-raised-button color="accent">削除</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
