@@ -17,6 +17,7 @@ export const initialState: State = {
 
 const todoReducer = createReducer(
   initialState,
+  on(TodoActions.clearAll, state => ({ ...state, loading: false, todos:[] })),
   on(TodoActions.loadAll, state => ({ ...state, loading: true })),
   on(TodoActions.loadAllSuccess, (state, { todos }) => ({
     ...state,

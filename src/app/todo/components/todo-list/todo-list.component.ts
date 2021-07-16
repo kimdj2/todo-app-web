@@ -14,6 +14,7 @@ export class TodoListComponent implements OnInit {
   constructor(private todoService: TodoFacade) { }
 
   ngOnInit() {
+    this.todoService.clearAll();
     this.todoService.loadAll();
   }
 

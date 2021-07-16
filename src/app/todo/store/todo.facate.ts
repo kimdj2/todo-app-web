@@ -18,4 +18,9 @@ export class TodoFacade {
   loadAll() {
     this.store.dispatch(TodoActions.loadAll());
   }
+
+  clearAll() {
+    this.store.dispatch(TodoActions.clearAll());
+  }
+
 }
