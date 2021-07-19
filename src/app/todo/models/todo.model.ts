@@ -4,5 +4,6 @@ export interface Todo {
   title: string;
   body: string;
   state: number;
+  categoryId: number;
   category: Category;
 }
