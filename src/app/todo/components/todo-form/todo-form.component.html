@@ -1,0 +1,56 @@
+<form [formGroup]="todoForm!" (ngSubmit)="onSubmit()">
+  <mat-card class="todo-form">
+    <mat-card-header class="todo-form__header">
+      <mat-card-title class="todo-form__title">
+        {{ formTitle }}
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="todo-form__content">
+      <p>
+        <mat-form-field appearance="fill">
+          <mat-label>タイトル</mat-label>
+          <input matInput formControlName="title" #title />
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="fill">
+          <mat-label>内容</mat-label>
+          <textarea matInput formControlName="body" #body rows="15"></textarea>
+        </mat-form-field>
+      </p>
+      <p *ngIf="editTodo === true">
+        <mat-form-field appearance="fill">
+          <mat-label>ステータス</mat-label>
+          <mat-select formControlName="state" #state>
+            <mat-option *ngFor="let state of stateList" [value]="state.code">
+              {{ state.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="fill">
+          <mat-label>カテゴリー</mat-label>
+          <mat-select formControlName="categoryId" #categoryId>
+            <mat-option
+              *ngFor="let category of categories | async"
+              [value]="category.id"
+              >{{ category.name }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+      </p>
+    </mat-card-content>
+    <mat-card-actions class="todo-form__footer">
+      <button
+        type="submit"
+        mat-raised-button
+        color="primary"
+        [disabled]="todoForm.invalid"
+      >
+        {{ getButtonName() }}
+      </button>
+      <button mat-raised-button color="accent" (click)="back()">戻る</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

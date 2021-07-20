@@ -1,5 +1,10 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { TodoFacade } from '../../store/todo.facate';
+import { TodoState } from '../../store/todo.state';
+import { Select, Store } from '@ngxs/store';
+import { Todo } from '../../models/todo.model';
+import { Observable } from 'rxjs';
+import { GetTodoList, DeleteTodo } from '../../store/todo.action';
+
 
 @Component({
   selector: 'app-todo-list',
@@ -8,14 +13,19 @@ import { TodoFacade } from '../../store/todo.facate';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TodoListComponent implements OnInit {
-  loading$ = this.todoService.loading$;
-  todos$ = this.todoService.todos$;
+  @Select(TodoState.getTodoList)
+  todos$!: Observable<Todo[]>;
 
-  constructor(private todoService: TodoFacade) { }
+  constructor(private store: Store) { }
 
   ngOnInit() {
-    this.todoService.clearAll();
-    this.todoService.loadAll();
+    this.store.dispatch(new GetTodoList());
+  }
+
+  deleteTodo(id: string) {
+    this.store.dispatch(new DeleteTodo(id)).subscribe(() => {
+      this.ngOnInit();
+    });
   }
 
   getColorName(color: number) {

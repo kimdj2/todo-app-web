@@ -13,7 +13,10 @@ import { TodoModule } from './todo/todo.module';
 import { CategoryModule } from './category/category.module';
 import { HttpClientModule } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
-import { AppStoreModule } from './app-store/app-store.module';
+import { NgxsModule } from '@ngxs/store';
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
+import { TodoState } from './todo/store/todo.state';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,11 @@ import { AppStoreModule } from './app-store/app-store.module';
     TodoModule,
     CategoryModule,
     HttpClientModule,
-    AppStoreModule
+    NgxsModule.forRoot([
+      TodoState
+    ]),
+    NgxsReduxDevtoolsPluginModule.forRoot(),
+    NgxsLoggerPluginModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

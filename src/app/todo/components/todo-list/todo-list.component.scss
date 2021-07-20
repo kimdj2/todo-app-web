@@ -2,8 +2,14 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+
+  &__button-area {
+    padding: 10px;
+    text-align: right;
+  }
+
   .todo-item {
-    width: 100%;
     margin: 10px;
     &__header {
       .mat-card-header-text {

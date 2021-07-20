@@ -9,15 +9,19 @@ import { TodoEditComponent } from './components/todo-edit/todo-edit.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { TodoStoreModule } from './store/todo-store.module';
-
+import { TodoFormComponent } from './components/todo-form/todo-form.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
     TodoComponent,
     TodoListComponent,
     TodoCreateComponent,
-    TodoEditComponent
+    TodoEditComponent,
+    TodoFormComponent,
   ],
   imports: [
     CommonModule,
@@ -25,7 +29,11 @@ import { TodoStoreModule } from './store/todo-store.module';
     MatCardModule,
     MatIconModule,
     MatButtonModule,
-    TodoStoreModule
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   exports: [
     TodoComponent

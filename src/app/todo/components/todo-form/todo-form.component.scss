@@ -1,0 +1,52 @@
+.todo-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 10px;
+  .mat-form-field {
+    width:70%;
+  }
+  &__header {
+    .mat-card-header-text {
+      margin: 0;
+    }
+  }
+  &__title {
+    height: 30px;
+    white-space: nowrap;
+
+    span {
+      font-size: 13px;
+      color: #fff;
+      background-color: #c9c9c9;
+      padding: 4px;
+      border-radius: 3px;
+    }
+  }
+
+  &__content {
+    margin-left: 20px;
+  }
+
+  &__name {
+    span {
+      padding: 4px 6px;
+      border-radius: 3px;
+    }
+    .red {
+      background-color: palevioletred;
+    }
+    .yellow {
+      background-color: wheat;
+    }
+    .blue {
+      background-color: skyblue;
+    }
+  }
+
+  &__footer {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px !important;
+  }
+}
