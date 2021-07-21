@@ -11,12 +11,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { HeaderComponent } from './header/header.component';
 import { TodoModule } from './todo/todo.module';
 import { CategoryModule } from './category/category.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
 import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { TodoState } from './todo/store/todo.state';
+import { UserState } from './user/store/user.state';
+import { ApiInterceptor } from './common/api.interceptor';
 
 @NgModule({
   declarations: [
@@ -36,12 +38,17 @@ import { TodoState } from './todo/store/todo.state';
     CategoryModule,
     HttpClientModule,
     NgxsModule.forRoot([
-      TodoState
+      TodoState,
+      UserState
     ]),
     NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsLoggerPluginModule.forRoot()
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: ApiInterceptor,
+    multi: true,
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

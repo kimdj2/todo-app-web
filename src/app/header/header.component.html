@@ -1,6 +1,8 @@
 <mat-toolbar>
-  <span>TODO App</span>
+  <span routerLink="/todo" style="cursor: pointer;">TODO App</span>
   <span class="spacer"></span>
-  <button mat-button routerLink="/todo">TODO</button>
-  <button mat-button routerLink="/category">Category</button>
+  <span class="user_info" *ngIf="user$ | async; let user">ログインユーザー：{{user.email}}</span>
+  <button mat-button *ngIf="isLoggedIn$ | async" (click)="logout()">Logout</button>
+  <button mat-button *ngIf="!(isLoggedIn$ | async)" routerLink="/user/login">Login</button>
+  <button mat-button *ngIf="!(isLoggedIn$ | async)" routerLink="/user/signup">Sign Up</button>
 </mat-toolbar>

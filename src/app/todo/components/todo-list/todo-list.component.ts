@@ -4,6 +4,7 @@ import { Select, Store } from '@ngxs/store';
 import { Todo } from '../../models/todo.model';
 import { Observable } from 'rxjs';
 import { GetTodoList, DeleteTodo } from '../../store/todo.action';
+import { UserState } from 'src/app/user/store/user.state';
 
 
 @Component({
@@ -15,8 +16,12 @@ import { GetTodoList, DeleteTodo } from '../../store/todo.action';
 export class TodoListComponent implements OnInit {
   @Select(TodoState.getTodoList)
   todos$!: Observable<Todo[]>;
+  @Select(UserState.getIsLoggedIn)
+  isLoggedIn$!: Observable<boolean>;
 
-  constructor(private store: Store) { }
+  constructor(private store: Store) {
+    console.log(this.isLoggedIn$)
+  }
 
   ngOnInit() {
     this.store.dispatch(new GetTodoList());
