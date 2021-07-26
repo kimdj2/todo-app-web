@@ -1,0 +1,45 @@
+<form [formGroup]="userForm!" (ngSubmit)="onSubmit()">
+  <mat-card class="user-form">
+    <mat-card-header class="user-form__header">
+      <mat-card-title class="user-form__title">
+        Sign Up
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="user-form__content">
+      <p>
+        <mat-form-field appearance="fill">
+          <mat-label>email</mat-label>
+          <input type="email" matInput formControlName="email" #email />
+          <mat-error *ngIf="userForm.get('email')?.getError('email') && !this.userForm.get('email')?.getError('required')">
+            Please enter a valid Email
+          </mat-error>
+          <mat-error *ngIf="userForm.get('email')?.getError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="fill">
+          <mat-label>password</mat-label>
+          <input type="password" matInput formControlName="password" #password />
+          <mat-error *ngIf="userForm.get('password')?.getError('password') && !this.userForm.get('password')?.getError('required')">
+            Please enter a valid Password
+          </mat-error>
+          <mat-error *ngIf="userForm.get('password')?.getError('required')">
+            Password is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </p>
+    </mat-card-content>
+    <mat-card-actions class="user-form__footer">
+      <button
+        type="submit"
+        mat-raised-button
+        color="primary"
+      >
+        登録
+      </button>
+      <button mat-raised-button color="accent" (click)="moveMain()">戻る</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

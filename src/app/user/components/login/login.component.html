@@ -1,0 +1,45 @@
+<form [formGroup]="loginForm!" (ngSubmit)="onSubmit()">
+  <mat-card class="login-form">
+    <mat-card-header class="login-form__header">
+      <mat-card-title class="login-form__title">
+        ログイン
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="login-form__content">
+      <p>
+        <mat-form-field appearance="fill">
+          <mat-label>email</mat-label>
+          <input type="email" matInput formControlName="email" #email />
+          <mat-error *ngIf="loginForm.get('email')?.getError('email') && !this.loginForm.get('email')?.getError('required')">
+            Please enter a valid Email
+          </mat-error>
+          <mat-error *ngIf="loginForm.get('email')?.getError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="fill">
+          <mat-label>password</mat-label>
+          <input type="password" matInput formControlName="password" #password />
+          <mat-error *ngIf="loginForm.get('password')?.getError('password') && !this.loginForm.get('password')?.getError('required')">
+            Please enter a valid Password
+          </mat-error>
+          <mat-error *ngIf="loginForm.get('password')?.getError('required')">
+            Password is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </p>
+    </mat-card-content>
+    <mat-card-actions class="login-form__footer">
+      <button
+        type="submit"
+        mat-raised-button
+        color="primary"
+      >
+        ログイン
+      </button>
+      <button mat-raised-button color="accent" (click)="moveMain()">戻る</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

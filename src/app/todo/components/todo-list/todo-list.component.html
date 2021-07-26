@@ -1,11 +1,10 @@
 <div class="todo-list">
-  <div class="todo-list__button-area">
-    <button mat-raised-button color="primary" routerLink="/todo/create">新規作成</button>
+  <div *ngIf="isLoggedIn$ | async" class="todo-list__button-area">
+    <button mat-raised-button color="primary" routerLink="/todo/create">
+      新規作成
+    </button>
   </div>
-  <mat-card
-    class="todo-item"
-    *ngFor="let todo of todos$ | async"
-  >
+  <mat-card class="todo-item" *ngFor="let todo of todos$ | async">
     <mat-card-header class="todo-item__header">
       <mat-card-title class="todo-item__title">
         {{ todo.title }}
@@ -22,9 +21,17 @@
         </span>
       </mat-card-subtitle>
     </mat-card-content>
-    <mat-card-actions class="todo-item__footer">
-      <button mat-raised-button color="primary" [routerLink]="['/todo/edit',todo.id]">編集</button>
-      <button mat-raised-button color="accent" (click)="deleteTodo(todo.id)">削除</button>
+    <mat-card-actions *ngIf="isLoggedIn$ | async" class="todo-item__footer">
+      <button
+        mat-raised-button
+        color="primary"
+        [routerLink]="['/todo/edit', todo.id]"
+      >
+        編集
+      </button>
+      <button mat-raised-button color="accent" (click)="deleteTodo(todo.id)">
+        削除
+      </button>
     </mat-card-actions>
   </mat-card>
 </div>
